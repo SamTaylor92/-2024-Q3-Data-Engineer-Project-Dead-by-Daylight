@@ -20,6 +20,10 @@ This project focuses on building an **ETL pipeline** for **Dead by Daylight** ga
 
 The data is sourced from [Dennis Reep's Dead by Daylight website](https://dennisreep.nl/dbd/), and integrated into a database designed to store, manage, and analyze key elements for decision-making around the game.
 
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/102c63d3-70e5-46b7-b318-33c8b0b3601b" alt="dbd">
+</div>
+
 ## Table of Contents
 
 - [Technologies Used](#technologies-used)
