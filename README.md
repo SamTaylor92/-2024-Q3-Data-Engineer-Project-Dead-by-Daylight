@@ -16,9 +16,9 @@ href="mailto:samtaylor92@live.co.uk" target="_blank"><img alt="Email" src="https
 
 ## Overview
 
-This project focuses on building an **ETL pipeline** for **Dead by Daylight** game data. The pipeline processes data from various game entities such as characters, perks, maps, addons, and match details. Using **Databricks** and **Apache Spark**, we designed the pipeline to transform, clean, and load data into structured formats that support game balancing analysis, player performance tracking, and game element ratings.
+This project focuses on building an **ETL pipeline** for **Dead by Daylight** game data. The pipeline processes data from various game entities such as characters, perks, maps, addons, and match details. Using **python** and **VS Code**, we designed the pipeline to transform, clean, and load data into structured formats that support game balancing analysis, player performance tracking, and game element ratings.
 
-The data is sourced from [Dennis Reep's Dead by Daylight website](https://dennisreep.nl/dbd/), and integrated into a database designed to store, manage, and analyze key elements for decision-making around the game.
+The data is scraped (with permission) from [Dennis Reep's Dead by Daylight website](https://dennisreep.nl/dbd/), and integrated into a database designed to store, manage, and analyze key elements for decision-making around the game.
 
 <div align="center">
     <img src="https://github.com/user-attachments/assets/102c63d3-70e5-46b7-b318-33c8b0b3601b" alt="dbd">
@@ -39,26 +39,34 @@ The data is sourced from [Dennis Reep's Dead by Daylight website](https://dennis
 
 ## Technologies Used
 
-- **Apache Spark** (Databricks)
 - **Python**
-- **Delta Lake**
-- **Amazon S3** for storage
-- **Git** for version control
+- **Google Sheets**
 
 ## Pipeline Architecture
 
 1. **Extract**:
    - Data is scraped monthly from the [Dennis Reep Dead by Daylight Website](https://dennisreep.nl/dbd/).
    - Data includes ratings, tier lists for killers and survivors, perks, and map biases.
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/a24ac5f6-2490-4ebc-bf18-2b5c5c22b6bb" alt="Data scraping code">
+</div>
 
 2. **Transform**:
    - Data cleaning includes renaming columns, handling nulls, and transforming data types.
    - Special care is given to **perk ratings**, **character costs**, and **match outcomes**.
    - Additions of new columns like `total_cost_euros` and `is_licensed` for characters.
+  
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/d0f30fb7-3799-44eb-8113-95e51be9f9b4" alt="Data transformation code">
+</div>
 
 3. **Load**:
-   - Processed data is loaded into **Delta Lake**, using staging (`stg_`), dimension (`dim_`), and fact (`fact_`) tables.
+   - Processed data is loaded into **the database**, using staging (`stg_`), dimension (`dim_`), and fact (`fact_`) tables.
    - Fact tables contain aggregated match statistics, killer and survivor perks, and map ratings.
+
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/47653a61-695c-4a04-a2ec-0a45ef7b96be" alt="Data tables">
+</div>
 
 ## Project Structure
 
@@ -71,28 +79,36 @@ dbd/
 ├── [August 2024] Dead by Daylight.pdf                              # Presentation for the project 
 ├── README.md                                                       # Github documentation (this file)
 └── requirements.txt                                                # Python dependencies for the project
+
 ```
-## Data Sources
+
+## Data Sources
 
 Data is scraped from:
 
 - [Dennis Reep Dead by Daylight Database](https://dennisreep.nl/dbd/): Contains game ratings, perk tier lists, and map biases.
 - Google Sheets for custom match data.
 
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/b5f2e70a-6a9e-4885-92cf-7fd236571712" alt="Data source website">
+</div>
+
 ## Installation & Setup
 
-### Prerequisites
+### Prerequisites
 - Python 3.7+ is required.
 - Install dependencies via `pip` or `conda` using the provided `requirements.txt` file.
 
-### Setup
+### Setup
 1. Clone the repository:
+   
 ```bash
 git clone https://github.com/SamTaylor92/2024-Q3-Data-Engineer-Project-Dead-by-Daylight.git
 cd dbd
 ```
 
 2. Install dependencies:
+   
 ```bash
 pip install -r requirements.txt
 ```
@@ -109,7 +125,7 @@ pip install -r requirements.txt
 
 2. Transform Data:
 - The data is not currently containerised, so one run of the data will also complete the ETL, transform and analysis steps.
-  
+
 3. Analyze:
 - The data is not currently containerised, so one run of the data will also complete the ETL, transform and analysis steps.
 
