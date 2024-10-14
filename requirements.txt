@@ -1,0 +1,9 @@
+beautifulsoup4
+html-table-parser-python3
+matplotlib
+mlxtend
+numpy
+pandas
+scikit-learn
+seaborn
+textwrap3
